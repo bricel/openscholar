@@ -64,8 +64,10 @@
         function recursiveFetch(resp, status, headers, config) {
           var key = config.pKey;
           // convert the key into a params array
-          for (var i=0; i<resp.data.length; i++) {
-            cache[key].data.push(resp.data[i]);
+          if (resp.data) {
+            for (var i = 0; i < resp.data.length; i++) {
+              cache[key].data.push(resp.data[i]);
+            }
           }
 
           if (resp.next) {

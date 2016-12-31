@@ -51,21 +51,21 @@
       if (typeof settingsForms[group_id] != 'undefined') {
         return angular.copy(settingsForms[group_id]);
       }
-      throw "No form group with id " + group_id + " exists.";
+      console.log("No form group with id " + group_id + " exists.");
     }
 
     this.GetFormTitle = function (group_id) {
       if (typeof groupInfo[group_id] != 'undefined') {
         return groupInfo[group_id]['#title'];
       }
-      throw "No form group with the id " + group_id + " exists.";
+      console.log("No form group with id " + group_id + " exists.");
     }
 
     this.GetHelpLink = function (group_id) {
       if (typeof groupInfo[group_id] != 'undefined') {
         return groupInfo[group_id]['#help_link'];
       }
-      throw "No form group with the id " + group_id + " exists.";
+      console.log("No form group with id " + group_id + " exists.");
     }
 
     this.IsSetting = function (var_name) {
