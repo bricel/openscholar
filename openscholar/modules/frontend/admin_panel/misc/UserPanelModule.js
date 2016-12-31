@@ -46,12 +46,15 @@
 
     var url = paths.api + '/users/' + user_data.uid;
     $http({method: 'get', url: url}).then(function(response) {
-      if(typeof(response.data.data[0].og_user_node) == 'undefined') {
+    if(!response.data.data || typeof(response.data.data[0].og_user_node) == 'undefined') {
         $scope.site_data = [];
-      } else {
+      }
+      else {
         $scope.site_data = response.data.data[0].og_user_node;
       }
-      $scope.create_access = response.data.data[0].create_access;
+      if (response.data.data) {
+        $scope.create_access = response.data.data[0].create_access;
+      }
     });
     $scope.pageSize = 7;
     if (Drupal.settings.spaces) {

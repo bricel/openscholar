@@ -429,8 +429,6 @@
               var t = [];
               keys = keys.concat.apply(t, keys);
             }
-            console.log(keys);
-
             lock.resolve(keys);
           });
 
@@ -524,7 +522,7 @@
           url = nextUrl;
         }
 
-        if (Drupal.settings.spaces.id) {
+        if (Drupal.settings.spaces && Drupal.settings.spaces.id) {
           if (url.indexOf('?') == -1) {
             url += '?vsite=' + Drupal.settings.spaces.id;
           }
@@ -559,24 +557,25 @@
               }
             }
           }
-
-          for (var i = 0; i < resp.data.data.length; i++) {
-            // get all caches this entity exists in
-            var cacheKeys = getCacheKeysForEntity(type, cache[keys[0]].idProperty, resp.data.data[i])
-            // handle this entity for all caches it exists in
-            for (var k in cacheKeys) {
-              if (resp.data.data[i].status == 'deleted') {
-                cache[k].data.splice(cacheKeys[k], 1);
+          if (resp.data.data) {
+            for (var i = 0; i < resp.data.data.length; i++) {
+              // get all caches this entity exists in
+              var cacheKeys = getCacheKeysForEntity(type, cache[keys[0]].idProperty, resp.data.data[i])
+              // handle this entity for all caches it exists in
+              for (var k in cacheKeys) {
+                if (resp.data.data[i].status == 'deleted') {
+                  cache[k].data.splice(cacheKeys[k], 1);
+                }
+                else {
+                  cache[k].data.splice(cacheKeys[k], 1, resp.data.data[i]);
+                }
               }
-              else {
-                cache[k].data.splice(cacheKeys[k], 1, resp.data.data[i]);
-              }
-            }
-            if (resp.data.data[i].status != 'deleted') {
-              // add new entities to the caches
-              for (var k in cache) {
-                if (cacheKeys[k] == undefined && cache[k].matches(resp.data.data[i], type)) {
-                  cache[k].data.push(resp.data.data[i]);
+              if (resp.data.data[i].status != 'deleted') {
+                // add new entities to the caches
+                for (var k in cache) {
+                  if (cacheKeys[k] == undefined && cache[k].matches(resp.data.data[i], type)) {
+                    cache[k].data.push(resp.data.data[i]);
+                  }
                 }
               }
             }
@@ -597,7 +596,7 @@
           else {
             // construct 'everything' key
             var k = {};
-            if (Drupal.settings.spaces.id) {
+            if (Drupal.settings.spaces && Drupal.settings.spaces.id) {
               k.vsite = Drupal.settings.spaces.id;
             }
             for (var p in EntityConfig[type]) {

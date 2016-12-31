@@ -20,8 +20,6 @@
 
   m.controller('messageController', ['$scope', '$sessionStorage', function ($s, $ss) {
     $s.messages = $ss.messages;
-    console.log($s.messages);
-
     this.close = function () {
       delete $s.messages;
     }
