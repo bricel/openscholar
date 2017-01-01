@@ -34,15 +34,16 @@ fieldset {
     background: #FFF;
 }
 
-h3 {
+.ap-settings-form h3 {
     margin: 0;
 }
-table {
+.ap-settings-form table {
     font-size: 1em;
 }
-input.form-text,
-textarea,
-.redirect-add-form input {
+
+.ap-settings-form input.form-text,
+.ap-settings-form textarea,
+.ap-settings-form .redirect-add-form input {
     font-size: 13px;
     height: auto;
     padding: 6px 7px;
@@ -53,10 +54,10 @@ textarea,
 #og-vocabulary-add-more-wrapper select.form-select {
     height: 120px;
 }
-html.js input.form-autocomplete {
+html.js .ap-settings-form input.form-autocomplete {
     background-position: 100% 8px;
 }
-html.js input.throbbing {
+html.js .ap-settings-form input.throbbing {
     background-position: 100% -15px !important;
 }
 .os-help-link {
@@ -81,9 +82,9 @@ html.js input.throbbing {
     font-size: .97em;
 
 }
-    
 
-.view-os-files-private ul {
+
+.ap-settings-form .view-os-files-private ul {
     list-style-type: none !important;
     list-style: none !important;
 }
@@ -1184,16 +1185,16 @@ ul.table-list {
     margin-left: 0;
     border: 1px solid #CACACA;
 }
-ul.table-list:empty {
+.ap-settings-form ul.table-list:empty {
     border: none;
 }
-ul.table-list li {
+.ap-settings-form ul.table-list li {
     padding: 10px;
 }
-ul.table-list li:nth-child(odd) {
+.ap-settings-form ul.table-list li:nth-child(odd) {
     background-color: #FFF;
 }
-ul.table-list li:nth-child(even) {
+.ap-settings-form ul.table-list li:nth-child(even) {
     background-color: #EFEFEF;
 }
 .redirect-delete {
