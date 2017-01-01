@@ -701,7 +701,7 @@
         // try other things
         switch (k) {
           case 'vsite':
-            if (params[k] != Drupal.settings.spaces.id) {
+            if (!Drupal.settings.spaces || params[k] != Drupal.settings.spaces.id) {
               return false;
             }
             break;
